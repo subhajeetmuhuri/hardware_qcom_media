@@ -1363,7 +1363,7 @@ bool venc_dev::venc_open(OMX_U32 codec)
     unsigned int alignment = 0,buffer_size = 0, temp =0, enable_cma = 0;
     struct v4l2_control control;
     OMX_STRING device_name = (OMX_STRING)"/dev/video33";
-    OMX_STRING cma_device_name = (OMX_STRING)"/dev/video34";
+    OMX_STRING cma_device_name = (OMX_STRING)"/dev/video35";
     char property_value[PROPERTY_VALUE_MAX] = {0};
     char platform_name[PROPERTY_VALUE_MAX] = {0};
     FILE *soc_file = NULL;
