@@ -497,11 +497,7 @@ void* venc_dev::async_venc_message_thread (void *input)
                     DEBUG_PRINT_ERROR("ERROR: Wrong ioctl message");
                     break;
                 }
-#ifndef _TARGET_KERNEL_VERSION_49_
-                venc_msg.msgcode = VEN_MSG_FLUSH_OUPUT_DONE;
-#else
                 venc_msg.msgcode = VEN_MSG_FLUSH_OUTPUT_DONE;
-#endif
                 venc_msg.statuscode = VEN_S_SUCCESS;
 
                 if (omx->async_message_process(input,&venc_msg) < 0) {

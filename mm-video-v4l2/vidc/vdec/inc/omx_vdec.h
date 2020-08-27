@@ -592,7 +592,7 @@ enum vdec_interlaced_format {
 #define VDEC_YUV_FORMAT_NV12_TP10_UBWC \
     VDEC_YUV_FORMAT_NV12_TP10_UBWC
 
-enum vdec_output_fromat {
+enum vdec_output_format {
     VDEC_YUV_FORMAT_NV12 = 0x1,
     VDEC_YUV_FORMAT_TILE_4x2 = 0x2,
     VDEC_YUV_FORMAT_NV12_UBWC = 0x3,
@@ -742,11 +742,7 @@ struct extradata_buffer_info {
 struct video_driver_context {
     int video_driver_fd;
     enum vdec_codec decoder_format;
-#ifndef _TARGET_KERNEL_VERSION_49_
-    enum vdec_output_fromat output_format;
-#else
-   enum vdec_output_format output_format;
-#endif
+    enum vdec_output_format output_format;
     enum vdec_interlaced_format interlace;
     enum vdec_output_order picture_order;
     struct vdec_framesize frame_size;
@@ -1802,13 +1798,6 @@ enum instance_state {
     MSM_VIDC_CLOSE_DONE,
     MSM_VIDC_CORE_UNINIT,
 };
-
-#ifndef _TARGET_KERNEL_VERSION_49_
-enum vidc_resposes_id {
-    MSM_VIDC_DECODER_FLUSH_DONE = 0x11,
-    MSM_VIDC_DECODER_EVENT_CHANGE,
-};
-#endif
 
 #endif // _MSM8974_
 
