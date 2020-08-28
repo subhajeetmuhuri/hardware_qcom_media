@@ -2043,12 +2043,12 @@ bool venc_dev::venc_set_param(void *paramData, OMX_INDEXTYPE index)
                         if (fmt.fmt.pix_mp.num_planes > 1)
                             output_extradata_info.count = m_sOutput_buff_property.actualcount;
 
-                    }
+                        DEBUG_PRINT_LOW("input: actual: %u, min: %u, count_req: %u",
+                                (unsigned int)portDefn->nBufferCountActual, (unsigned int)m_sInput_buff_property.mincount, bufreq.count);
+                        DEBUG_PRINT_LOW("Output: actual: %u, min: %u, count_req: %u",
+                                (unsigned int)portDefn->nBufferCountActual, (unsigned int)m_sOutput_buff_property.mincount, bufreq.count);
 
-                    DEBUG_PRINT_LOW("input: actual: %u, min: %u, count_req: %u",
-                            (unsigned int)portDefn->nBufferCountActual, (unsigned int)m_sInput_buff_property.mincount, bufreq.count);
-                    DEBUG_PRINT_LOW("Output: actual: %u, min: %u, count_req: %u",
-                            (unsigned int)portDefn->nBufferCountActual, (unsigned int)m_sOutput_buff_property.mincount, bufreq.count);
+                    }
                 } else if (portDefn->nPortIndex == PORT_INDEX_OUT) {
                     m_sVenc_cfg.dvs_height = portDefn->format.video.nFrameHeight;
                     m_sVenc_cfg.dvs_width = portDefn->format.video.nFrameWidth;
