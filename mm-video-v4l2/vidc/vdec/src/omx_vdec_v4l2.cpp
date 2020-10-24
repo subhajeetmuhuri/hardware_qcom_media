@@ -4613,29 +4613,17 @@ OMX_ERRORTYPE  omx_vdec::set_parameter(OMX_IN OMX_HANDLETYPE     hComp,
                                         DEBUG_PRINT_ERROR("%s: Failed to get format on capture mplane", __func__);
                                         return OMX_ErrorBadParameter;
                                     }
-#ifndef _TARGET_KERNEL_VERSION_49_
-                                    enum vdec_output_fromat op_format;
-#else
                                     enum vdec_output_format op_format;
-#endif
                                     if (portFmt->eColorFormat == (OMX_COLOR_FORMATTYPE)
                                             QOMX_COLOR_FORMATYUV420PackedSemiPlanar32m ||
                                             portFmt->eColorFormat == (OMX_COLOR_FORMATTYPE)
                                             QOMX_COLOR_FORMATYUV420PackedSemiPlanar32mMultiView ||
                                             portFmt->eColorFormat == OMX_COLOR_FormatYUV420Planar ||
                                             portFmt->eColorFormat == OMX_COLOR_FormatYUV420SemiPlanar) {
-#ifndef _TARGET_KERNEL_VERSION_49_
-                                            op_format = (enum vdec_output_fromat)VDEC_YUV_FORMAT_NV12;
-#else
                                             op_format = (enum vdec_output_format)VDEC_YUV_FORMAT_NV12;
-#endif
                                     } else if (portFmt->eColorFormat == (OMX_COLOR_FORMATTYPE)
                                             QOMX_COLOR_FORMATYUV420PackedSemiPlanar32mCompressed) {
-#ifndef _TARGET_KERNEL_VERSION_49_
-                                            op_format = (enum vdec_output_fromat)VDEC_YUV_FORMAT_NV12_UBWC;
-#else
                                             op_format = (enum vdec_output_format)VDEC_YUV_FORMAT_NV12_UBWC;
-#endif
                                     } else
                                         eRet = OMX_ErrorBadParameter;
 
@@ -11653,6 +11641,7 @@ void omx_vdec::handle_extradata(OMX_BUFFERHEADERTYPE *p_buf_hdr)
         DEBUG_PRINT_HIGH("NULL drv_ctx.extradata_info.uaddr");
         return;
     }
+
     if (!secure_mode) {
         pBuffer = (OMX_U8*)ion_map(drv_ctx.ptr_outputbuffer[buf_index].pmem_fd,
                                    drv_ctx.ptr_outputbuffer[buf_index].buffer_len);
